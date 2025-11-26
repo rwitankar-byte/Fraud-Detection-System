@@ -1,134 +1,149 @@
 # 🚀 Fraud Detection System (Machine Learning + FastAPI)
 
-A machine-learning powered **Fraud Detection System** that predicts whether a financial transaction is **Legit** or **Fraudulent**.  
-Built using **Python, scikit-learn, FastAPI, Random Forest**, and the **Kaggle Credit Card Fraud Dataset**.
+A complete end-to-end **Fraud Detection System** that identifies fraudulent financial transactions using **Machine Learning**, **Random Forest**, and an easy-to-use **FastAPI backend**.
+
+This project includes:
+- Data preprocessing  
+- Model training (Logistic Regression + Random Forest)  
+- API for real-time prediction  
+- Clean project structure for deployment  
+- Production-ready environment setup  
 
 ---
 
-## 📖 Overview
-Financial fraud is a major modern risk. This project uses machine learning models to analyze transaction data and determine whether a given transaction is suspicious.
+## 📌 Features
 
-This system:
-- Trains models using real financial transaction data
-- Exposes a REST API for prediction
-- Returns JSON responses such as:
-```json
-{
-  "prediction": "Legit"
-}
-🧰 Tech Stack
+### ✅ 1. Data Preprocessing  
+- Handles imbalance (fraud vs. non-fraud)  
+- Scales numerical features  
+- Removes noise  
+- Splits dataset into train/test sets  
 
-Python 3.13+
+### ✅ 2. Machine Learning Models  
+Two models trained and compared:
+- **Logistic Regression**
+- **Random Forest Classifier (final selected model)**  
 
-FastAPI (API layer)
+### Model Metrics (Random Forest)
+| Metric | Score |
+|--------|--------|
+| Precision | 0.81 |
+| Recall | 0.82 |
+| F1 Score | 0.81 |
+| Accuracy | 99% |
 
-Uvicorn (server)
+---
 
-scikit-learn (ML models)
+## 🌐 3. FastAPI Backend (Real-Time Prediction)
 
-pandas, numpy (data handling)
-
-📁 Folder Structure
-FraudDetectionSystem/
-│── data/
-│    └── creditcard.csv
-│── models/
-│    ├── fraud_model.pkl
-│    └── fraud_model_rf.pkl
-│── src/
-│    ├── load_data.py
-│    ├── preprocessing.py
-│    ├── train_model.py
-│    ├── train_random_forest.py
-│    ├── api.py
-│    └── utils.py
-│── venv/
-│── requirements.txt
-│── README.md
-
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-git clone https://github.com/rwitankar-byte/FraudDetectionSystem.git
-cd FraudDetectionSystem
-
-2️⃣ Create Virtual Environment (Mac)
-python3 -m venv venv
-source venv/bin/activate
-
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-
-▶️ Running the API
-
-Start the FastAPI server:
-
-uvicorn src.api:app --reload
-
-
-API will run at:
-
-http://127.0.0.1:8000
-
-
-Interactive documentation (Swagger UI):
-
-http://127.0.0.1:8000/docs
-
-🧪 API Usage
+Endpoint:
 POST /predict
 
-Send JSON like:
+css
+Copy code
 
+Request JSON:
+```json
 {
-  "Time": 12,
+  "Time": 1000,
   "V1": -1.23,
-  "V2": 0.56,
-  "V3": -0.78,
-  "Amount": 120.50
+  "V2": 0.45,
+  "V3": 1.89,
+  "V4": -0.30,
+  "V5": 0.12,
+  "V6": 0.80,
+  "V7": -1.10,
+  "V8": 0.10,
+  "V9": 0.56,
+  "V10": -0.22,
+  "V11": -1.56,
+  "V12": 1.22,
+  "V13": -0.80,
+  "V14": 0.40,
+  "V15": 0.33,
+  "V16": -0.22,
+  "V17": 0.87,
+  "V18": -0.11,
+  "V19": 0.65,
+  "V20": -0.90,
+  "V21": 0.12,
+  "V22": 0.33,
+  "V23": -0.44,
+  "V24": 0.52,
+  "V25": -0.22,
+  "V26": 0.66,
+  "V27": -0.11,
+  "V28": 0.12,
+  "Amount": 150.55
 }
-
 Response:
+
+json
+Copy code
 {
-  "prediction": "Legit"
+  "prediction": "Legit" 
 }
+📂 Project Structure
+css
+Copy code
+FraudDetectionSystem/
+│── app.py
+│── data/
+│── models/
+│── notebooks/
+│── README.md
+│── requirements.txt
+│── src/
+│── venv/
+🛠 Installation & Setup
+1️⃣ Clone the repository
+bash
+Copy code
+git clone https://github.com/rwitankar-byte/Fraud-Detection-System.git
+cd Fraud-Detection-System
+2️⃣ Create Virtual Environment
+bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+3️⃣ Install Dependencies
+nginx
+Copy code
+pip install -r requirements.txt
+4️⃣ Run FastAPI Server
+lua
+Copy code
+uvicorn app:app --reload
+Server will start at:
 
-📊 Model Details
-Models Trained
+cpp
+Copy code
+http://127.0.0.1:8000
+Swagger Docs:
 
-Logistic Regression
+arduino
+Copy code
+http://127.0.0.1:8000/docs
+📊 Model Training
+Training scripts are located in:
 
-Random Forest ✅ (Selected as final model)
+bash
+Copy code
+src/preprocessing.py
+src/train_model.py
+src/train_random_forest.py
+Models are saved in:
 
-Performance Highlights
+bash
+Copy code
+models/fraud_model.pkl
+models/fraud_model_rf.pkl
+Random Forest is the final model used for predictions.
 
-High accuracy
+📜 License
+This project is for educational purposes and can be extended for production.
 
-Strong recall on fraud class (~82%)
-
-Model stored in models/fraud_model_rf.pkl
-
-📜 How It Works
-
-Load and preprocess dataset
-
-Train ML models
-
-Save best model
-
-API loads model on startup
-
-User sends JSON → model predicts → returns result
-
-🚧 Future Enhancements
-
-Dashboard for monitoring predictions
-
-Real-time fraud streaming engine
-
-Cloud deployment (Render/AWS)
-
-Deep learning (Autoencoders, LSTM)
-
-🙍‍♂️ Author
-
+🙌 Author
 Rwitankar Pal
+Fraud Detection System – Capstone Project
+
